@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Kecamatan extends Model
 {
-    use HasFactory;
+    protected $table = 'kecamatan';
 
-    protected $fillable = ['id', 'nama'];
-    public $timestamps = false; // Karena data dari CSV dan tidak diubah
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'int';
 
-    public function kelurahans()
-    {
-        return $this->hasMany(Kelurahan::class);
-    }
+    public $timestamps = false;
+
+    protected $fillable = [
+        'id',
+        'nama',
+    ];
 }

@@ -2,18 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Kecamatan;
+use App\Models\JalanPeduliPelapor;
+use App\Models\JalanPeduliLaporan;
 
 class Kelurahan extends Model
 {
-    use HasFactory;
+    protected $table = 'kelurahan';
 
-    protected $fillable = ['id', 'nama', 'kecamatan_id'];
-    public $timestamps = false; // Karena data dari CSV dan tidak diubah
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'int';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'id',
+        'nama',
+        'kecamatan_id',
+    ];
 
     public function kecamatan()
     {
-        return $this->belongsTo(Kecamatan::class);
+        return $this->belongsTo(Kecamatan::class, 'kecamatan_id');
     }
 }
